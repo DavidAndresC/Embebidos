@@ -1,0 +1,28 @@
+#include <LiquidCrystal.h> libreria 
+LiquidCrystal lcd (12,11,5,4,3,2); //declaro q puertos voi a utilizar de mi placa arduino
+
+String dato;
+int cont ;
+
+
+void setup() {
+Serial.begin (9600);// inicializa la cx serial 
+lcd.begin(16,2); //inicializa la lcd 
+}
+
+void loop() {
+if(Serial.available()>0); //comprueba que se ayan ingresado datos 
+  {
+    
+    cont = random (12);
+    
+    dato=Serial.readString();// Lee la frase ingresada por cx serial
+    lcd.setCursor(cont,0);   
+    lcd.print(dato); //Iprime el dato en la posicion 0
+    delay(300);// timpo de retarde de vsualizacion 
+   
+  }
+  lcd.clear (); //Limpia la LCD
+  delay (300);
+
+}
