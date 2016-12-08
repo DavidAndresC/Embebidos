@@ -1,0 +1,58 @@
+int matriz[20][3]={{1,22,9},{24,3,8},{23,14,0},{20,16,6},{1,12,-3},{4,-3,18},{18,-3,21},{6,-4,0},{24,22,9},{19,20,25},{13,8,4},{23,19,12},{2,4,-3},{-2,15,18},{-5,24,12},{-3,3,25},{1,13,22},{17,10,17},{-3,5,21},{11,14,5}};
+int u;
+float sf,sc;
+double suma=0.0, prom=0.0;
+int contador=0;
+void setup() {
+  // put your setup code here, to run once:
+Serial.begin(9600);  
+Serial.println("Presione 'C' para efectuar calculos: "); 
+    }
+        
+     
+
+
+void loop() {
+  // put your main code here, to run repeatedly:
+//Suma filas de la matriz
+u=0;
+if (Serial.read()=='C') {
+
+Serial.println("Suma de Filas");
+        for (int x = 0; x < 20; x++) {  
+            sf=0.0;  
+            for (int y = 0; y < 3; y++) {  
+                sf=sf+matriz[x][y];  
+            }  
+            Serial.print("Suma de fila: ");
+               Serial.print(x);
+            Serial.print("  =");
+       suma+=sf;     
+            Serial.println(sf);  
+        }  
+
+//Multiplicacion de columnas de la matriz
+contador=0;
+Serial.println("Multimplicacion de columnas");
+        for (int i = 0; i <3; i++) {  
+            sc=1.0;
+            contador++; 
+            for (int j = 0; j < 20; j++) {  
+              
+                sc=sc*matriz[j][i];
+
+               
+            }  
+            Serial.print("multiplicacion de columna"); Serial.print(contador);Serial.print("= ");
+   Serial.println (sc); 
+        }
+          
+        prom=suma/contador;
+        Serial.print("SUMA de todas las columnas: ");
+        Serial.println(suma); 
+        Serial.print("PROMEDIO de la suma de todas de las columnas: ");
+        Serial.println(prom);
+}
+
+
+}
