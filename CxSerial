@@ -1,0 +1,28 @@
+#include <LiquidCrystal.h>
+//Realizar un programa que se ingrese mediante comunicación serial un mensaje y se visualice en una lcd con algún tipo de rotación de datos.
+//Realizar una contraseña de 4 dígitos ingresadas por comunicación serial que se observen en la LCD la aceptación o denegación de la misma.
+LiquidCrystal lcd(12,11,5,4,3,2); //2 Escribe micros pero de letra en letra y repite 
+String dato;
+String contra="SATA";
+
+
+void setup() {
+  lcd.begin(16,2);
+  Serial.begin(9600);//Activamos el serial
+ // pinMode(reset,INPUT);
+}
+
+void loop() {
+  if(Serial.available()>=1){ //Para saber el tamaño de una palabra con vectores
+    dato=Serial.readString();
+    
+    if(dato.equals(contra)){
+    lcd.print("CORRECTO"); 
+    delay(300); 
+    }
+    else{
+    lcd.print("INCORRECTO");
+    delay(300); }
+  }
+  
+}
